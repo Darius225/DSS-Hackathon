@@ -23,15 +23,12 @@ def get_text( AUDIO_PATH):
 
 def extract_keywords( text ):
 	r = Rake()
-	r.extract_keywords(text)
-	r.get_ranked_phrases()
+	r.extract_keywords_from_text(text)
+	print(r.get_ranked_phrases())
 
-convert_to_audio("PRIVATE_VIDEO_3_What_are_you_passionate_about.mp4","video3.wav")
-analyze =get_text("video3.wav")
-print(get_text("video3.wav"))
+text =get_text("audio.wav")
+print(text)
 extract_keywords(text)
-
-#
 #command = "ffmpeg -i c.mp4 -ab 160k -ac 2 -ar 44100 -vn audio.wav"
 #subprocess.call(command, shell=True)
 #AUDIO_FILE = path.join(path.dirname(path.realpath(__file__)), "audio.wav")
