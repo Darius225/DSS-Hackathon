@@ -26,24 +26,24 @@ def extract_keywords( text ):
 	r.extract_keywords_from_text(text)
 	return r.get_ranked_phrases()
 
-def stop_keywords( word ):
-	config = Decoder.default_config()
-	config.set_string('-keyphrase', word)
-	config.set_float('-kws_threshold', 1e-30)
-	stream = open(path.join(path.dirname(path.realpath(__file__)), "audio.wav" ), "rb")
-	decoder = Decoder(config)
-	decoder.start_utt()
-	while True:
-		buf = stream.read(1024)
-		if buf:
-			decoder.process_raw(buf, False, False)
-		else:
-			break
-		if decoder.hyp() != None:
-			print ([(seg.word, seg.prob, seg.start_frame, seg.end_frame) for seg in decoder.seg()])
-			print ("Detected keyphrase, restarting search")
-			decoder.end_utt()
-			decoder.start_utt()
+#def stop_keywords( word ):
+	#config = Decoder.default_config()
+	#config.set_string('-keyphrase', word)
+	#config.set_float('-kws_threshold', 1e-30)
+	#stream = open(path.join(path.dirname(path.realpath(__file__)), "audio.wav" ), "rb")
+	#decoder = Decoder(config)
+	#decoder.start_utt()
+	#while True:
+		#buf = stream.read(1024)
+		#if buf:
+			#decoder.process_raw(buf, False, False)
+		#else:
+			#break
+		#if decoder.hyp() != None:
+			#print ([(seg.word, seg.prob, seg.start_frame, seg.end_frame) for seg in decoder.seg()])
+			#print ("Detected keyphrase, restarting search")
+			#decoder.end_utt()
+			#decoder.start_utt()
 
 text =get_text("audio.wav")
 print(text)
